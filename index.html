@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CareConnect – Rural Telemedicine Hub</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/5.1.1/tesseract.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>CareConnect<small>Rural Telemedicine &amp; Health Monitoring Hub · Team Do Bronxs</small></h1>
+  <span id="net" class="net">Online</span>
+</header>
+<nav>
+  <button id="t-patient" class="on">Patient / ASHA</button>
+  <button id="t-doctor">Doctor portal <span id="cnt"></span></button>
+</nav>
+<main>
+<section id="v-patient">
+  <div class="card"><h2>1 · Patient details</h2>
+    <div class="row"><div><label>Name</label><input id="pn" placeholder="Patient name"></div><div><label>Age</label><input id="pa" type="number" min="0" max="120"></div></div>
+    <div class="row"><div><label>Village</label><input id="pv"></div><div><label>Phone (WhatsApp)</label><input id="pp" type="tel" placeholder="91XXXXXXXXXX"></div></div>
+  </div>
+  <div class="card"><h2>2 · Scan prescription / report</h2>
+    <input id="file" type="file" accept="image/*" capture="environment">
+    <img id="prev" class="prev hide" alt="Prescription preview">
+    <div id="ocrst" class="muted"></div>
+    <label>Extracted text (editable — type or paste if the scan is unreadable)</label>
+    <textarea id="txt" placeholder="Dr. A. Sharma  Reg. No: UP-12345&#10;Date: 12/11/2026&#10;BP 150/95  Pulse 88  Temp 100.4 F  SpO2 96&#10;Tab Paracetamol 500mg 1-0-1&#10;Syp Cough 5ml TDS"></textarea>
+    <div class="btns"><button class="btn sec" id="sample">Load sample</button><button class="btn" id="verify">Verify record</button></div>
+  </div>
+  <div class="card"><h2>3 · Voice note (symptoms)</h2>
+    <div class="row"><div><label>Language</label><select id="lang"><option value="hi-IN">हिन्दी (Hindi)</option><option value="en-IN">English (India)</option><option value="bn-IN">বাংলা</option><option value="mr-IN">मराठी</option><option value="ta-IN">தமிழ்</option><option value="te-IN">తెలుగు</option></select></div><div><label>&nbsp;</label><button class="btn" id="mic" style="margin:0;width:100%">🎤 Start speaking</button></div></div>
+    <label>Transcript (editable)</label><textarea id="voice" placeholder="Describe symptoms…"></textarea>
+    <div id="micst" class="muted"></div>
+  </div>
+  <div id="result" class="card hide"></div>
+</section>
+
+<section id="v-doctor" class="hide">
+  <div class="card"><h2>Queue status</h2>
+    <div class="muted" id="qinfo"></div>
+    <label style="display:flex;gap:8px;align-items:center;margin-top:8px"><input type="checkbox" id="sim" style="width:auto"> Simulate no network (cases wait in the offline queue)</label>
+  </div>
+  <div id="cases"></div>
+</section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
